@@ -24,9 +24,7 @@
             <h1 class="text-4xl font-black tracking-tight uppercase">M.A. GOHAR</h1>
             <p class="text-rose-500 font-bold text-xs tracking-[0.3em] uppercase">Battery Radar Pro</p>
         </div>
-        <button id="installBtn" class="hidden bg-emerald-500 hover:bg-emerald-400 text-white text-[10px] px-4 py-2 rounded-full font-black shadow-lg shadow-emerald-900/40 transition-all uppercase">
-            Install App
-        </button>
+        <button id="installBtn" class="hidden bg-emerald-500 text-white text-[10px] px-4 py-2 rounded-full font-black uppercase">Install App</button>
     </div>
 
     <div class="flex-1 w-full flex flex-col items-center justify-center px-6 -mt-10">
@@ -37,7 +35,6 @@
             </div>
 
             <div class="relative w-24 h-44 border-4 border-slate-600 rounded-[2rem] p-1.5 mb-6 z-10">
-                <div class="w-8 h-3 bg-slate-600 absolute -top-4 left-1/2 -translate-x-1/2 rounded-t-lg"></div>
                 <div id="fill" class="w-full battery-fill rounded-[1.4rem] absolute bottom-1.5 left-0 right-0 bg-fitness" style="height: 0%"></div>
                 <div id="percent-inner" class="absolute inset-0 flex items-center justify-center font-black text-xl text-white">0%</div>
             </div>
@@ -48,10 +45,10 @@
             <div class="w-full space-y-3 z-10">
                 <div class="flex items-center justify-between bg-black/30 p-4 rounded-2xl border border-white/5">
                     <span class="text-[10px] font-bold text-slate-400 uppercase">Alert Target (%)</span>
-                    <input type="number" id="target" value="100" class="bg-transparent text-rose-500 font-black text-right outline-none w-12 text-lg">
+                    <input type="number" id="target" class="bg-transparent text-rose-500 font-black text-right outline-none w-12 text-lg">
                 </div>
                 
-                <button id="masterSwitch" class="w-full py-4 rounded-2xl font-black text-xs tracking-widest uppercase bg-rose-500 text-white shadow-xl shadow-rose-900/20 active:scale-95 transition-all">Activate Radar</button>
+                <button id="masterSwitch" class="w-full py-4 rounded-2xl font-black text-xs tracking-widest uppercase bg-rose-500 text-white shadow-xl active:scale-95 transition-all">Activate Radar</button>
                 <button onclick="testAlarm()" class="w-full py-3 rounded-xl font-bold text-[9px] tracking-widest uppercase border border-white/10 text-slate-400">Test Alarm Sound</button>
                 <button id="stopBtn" onclick="stopAlarm()" class="hidden w-full py-4 rounded-2xl font-black text-xs bg-white text-rose-600 animate-bounce">STOP ALARM</button>
             </div>
@@ -65,16 +62,24 @@
         const fill = document.getElementById('fill');
         const statusText = document.getElementById('main-status');
         const masterBtn = document.getElementById('masterSwitch');
+        const targetInput = document.getElementById('target');
         const installBtn = document.getElementById('installBtn');
         const subMsg = document.getElementById('sub-msg');
-        let deferredPrompt;
         let systemArmed = false;
+        let deferredPrompt;
 
-        // Install Button Logic
+        // 1. Memory Logic
+        const savedTarget = localStorage.getItem('goharTarget') || 100;
+        targetInput.value = savedTarget;
+        targetInput.addEventListener('input', () => {
+            localStorage.setItem('goharTarget', targetInput.value);
+        });
+
+        // 2. Install Logic
         window.addEventListener('beforeinstallprompt', (e) => {
             e.preventDefault();
             deferredPrompt = e;
-            installBtn.classList.remove('hidden'); // Button show karein
+            installBtn.classList.remove('hidden');
         });
 
         installBtn.addEventListener('click', async () => {
@@ -94,7 +99,7 @@
                 masterBtn.innerText = "Monitoring Active";
                 masterBtn.classList.replace('bg-rose-500', 'bg-slate-800');
                 subMsg.innerText = "Radar Armed & Secure";
-                alert("System Armed! Background monitoring chalu ho gayi hai.");
+                alert("Target " + targetInput.value + "% Saved and Armed!");
             });
         };
 
@@ -107,12 +112,12 @@
         navigator.getBattery().then(battery => {
             const update = () => {
                 const level = Math.round(battery.level * 100);
-                const target = parseInt(document.getElementById('target').value);
+                const currentTarget = parseInt(targetInput.value);
                 statusText.innerText = level + "%";
                 document.getElementById('percent-inner').innerText = level + "%";
                 fill.style.height = level + "%";
 
-                if(systemArmed && level >= target && battery.charging) {
+                if(systemArmed && level >= currentTarget && battery.charging) {
                     alarm.play();
                     document.getElementById('radarCircles').classList.remove('hidden');
                     document.getElementById('stopBtn').classList.remove('hidden');
@@ -132,7 +137,6 @@
             subMsg.innerText = systemArmed ? "Radar Armed & Secure" : "System Ready";
         }
 
-        // Service Worker for Offline/Background stability
         if ('serviceWorker' in navigator) {
             window.addEventListener('load', () => {
                 navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7IH0pOw==');
