@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Gohar Battery Radar Pro</title>
+    
+    <link rel="manifest" href="data:application/json;base64,ewogICJuYW1lIjogIkdvaGFyIEJhdHRlcnkgUmFkYXIiLAogICJzaG9ydF9uYW1lIjogIkdvYmFyIFJhZGFyIiwKICAic3RhcnRfdXJsIjogIi4iLAogICJkaXNwbGF5IjogInN0YW5kYWxvbmUiLAogICJiYWNrZ3JvdW5kX2NvbG9yIjogIiMwNTBiMTgiLAogICJ0aGVtZV9jb2xvciI6ICIjZmYxZjVmIiwKICAiaWNvbnMiOiBbCiAgICB7CiAgICAgICJzcmMiOiAiaHR0cHM6Ly9jZG4taWNvbnMtcG5nLmZsaXRpY29uLmNvbS81MTIvMzEwNC8zMTA0NDgzLnBuZyIsCiAgICAgICJzaXplcyI6ICI1MTJ4NTEyIiwKICAgICAgInR5cGUiOiAiaW1hZ2UvcG5nIgogICAgfQogIF0KfQ==">
+
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { background: #050b18; color: #f8fafc; font-family: sans-serif; height: 100vh; overflow: hidden; }
+        .bg-fitness { background: linear-gradient(135deg, #ff1f5f 0%, #7d0633 100%); }
+        .glass-card { background: rgba(30, 41, 59, 0.7); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); border-radius: 40px; }
+        .radar-wave { position: absolute; border: 2px solid #ff1f5f; border-radius: 50%; animation: pulse 2s infinite; opacity: 0; }
+        @keyframes pulse { 0% { transform: scale(0.5); opacity: 0.8; } 100% { transform: scale(2.5); opacity: 0; } }
+        .battery-fill { transition: height 1s cubic-bezier(0.4, 0, 0.2, 1); }
+        .dot-blink { width: 10px; height: 10px; border-radius: 50%; background: #22c55e; position: relative; }
+        .dot-blink::after { content: ''; position: absolute; width: 100%; height: 100%; background: #22c55e; border-radius: 50%; animation: ping 1.5s infinite; opacity: 0.6; }
+        @keyframes ping { 75%, 100% { transform: scale(2.5); opacity: 0; } }
+    </style>
+</head>
+<body class="flex flex-col items-center">
+
+    <div class="w-full pt-12 pb-6 px-8 flex justify-between items-end">
+        <div>
+            <h1 class="text-4xl font-black tracking-tight uppercase">M.A. GOHAR</h1>
+            <p class="text-rose-500 font-bold text-xs tracking-[0.3em] uppercase">Battery Radar Pro</p>
+        </div>
+        <button id="installBtn" class="hidden bg-emerald-500 text-white text-[10px] px-3 py-1 rounded-full font-bold animate-bounce">INSTALL APP</button>
+    </div>
+
+    <div class="flex-1 w-full flex flex-col items-center justify-center px-6 -mt-10">
+        <div class="glass-card w-full max-w-sm p-10 flex flex-col items-center relative overflow-hidden">
+            <div id="radarCircles" class="hidden absolute inset-0 flex items-center justify-center">
+                <div class="radar-wave w-64 h-64"></div>
+                <div class="radar-wave w-64 h-64" style="animation-delay: 0.5s"></div>
+            </div>
+
+            <div class="relative w-24 h-44 border-4 border-slate-600 rounded-[2rem] p-1.5 mb-6 z-10">
+                <div class="w-8 h-3 bg-slate-600 absolute -top-4 left-1/2 -translate-x-1/2 rounded-t-lg"></div>
+                <div id="fill" class="w-full battery-fill rounded-[1.4rem] absolute bottom-1.5 left-0 right-0 bg-fitness" style="height: 0%"></div>
+                <div id="percent-inner" class="absolute inset-0 flex items-center justify-center font-black text-xl text-white">0%</div>
+            </div>
+
+            <div id="main-status" class="text-6xl font-black tracking-tighter mb-1 z-10">0%</div>
+            <p id="sub-msg" class="text-slate-400 text-[10px] font-bold uppercase tracking-widest mb-8 z-10 text-center uppercase">System Ready</p>
+
+            <div class="w-full space-y-3 z-10">
+                <div class="flex items-center justify-between bg-black/30 p-4 rounded-2xl border border-white/5">
+                    <span class="text-[10px] font-bold text-slate-400 uppercase">Alert Target (%)</span>
+                    <input type="number" id="target" value="100" class="bg-transparent text-rose-500 font-black text-right outline-none w-12 text-lg">
+                </div>
+                
+                <button id="masterSwitch" class="w-full py-4 rounded-2xl font-black text-xs tracking-widest uppercase bg-rose-500 text-white shadow-xl shadow-rose-900/20 active:scale-95 transition-all">Activate Radar</button>
+                <button onclick="testAlarm()" class="w-full py-3 rounded-xl font-bold text-[9px] tracking-widest uppercase border border-white/10 text-slate-400">Test Alarm Sound</button>
+                <button id="stopBtn" onclick="stopAlarm()" class="hidden w-full py-4 rounded-2xl font-black text-xs bg-white text-rose-600 animate-bounce">STOP ALARM</button>
+            </div>
+        </div>
+    </div>
+
+    <audio id="alarm" src="https://assets.mixkit.co/active_storage/sfx/2869/2869-preview.mp3" loop preload="auto"></audio>
+
+    <script>
+        const alarm = document.getElementById('alarm');
+        const fill = document.getElementById('fill');
+        const statusText = document.getElementById('main-status');
+        const masterBtn = document.getElementById('masterSwitch');
+        const installBtn = document.getElementById('installBtn');
+        const subMsg = document.getElementById('sub-msg');
+        let deferredPrompt;
+        let systemArmed = false;
+
+        // INSTALL LOGIC: Background service enable karne ke liye
+        window.addEventListener('beforeinstallprompt', (e) => {
+            e.preventDefault();
+            deferredPrompt = e;
+            installBtn.classList.remove('hidden');
+        });
+
+        installBtn.addEventListener('click', async () => {
+            if (deferredPrompt) {
+                deferredPrompt.prompt();
+                const { outcome } = await deferredPrompt.userChoice;
+                if (outcome === 'accepted') installBtn.classList.add('hidden');
+                deferredPrompt = null;
+            }
+        });
+
+        // Background Monitoring Unlock
+        masterBtn.onclick = () => {
+            alarm.play().then(() => {
+                alarm.pause();
+                alarm.currentTime = 0;
+                systemArmed = true;
+                masterBtn.innerText = "Monitoring Active";
+                masterBtn.classList.replace('bg-rose-500', 'bg-slate-800');
+                subMsg.innerText = "Radar Armed & Secure";
+                alert("System Armed! Background monitoring chalu ho gayi hai.");
+            });
+        };
+
+        function testAlarm() {
+            alarm.play();
+            document.getElementById('radarCircles').classList.remove('hidden');
+            setTimeout(stopAlarm, 3000);
+        }
+
+        navigator.getBattery().then(battery => {
+            const update = () => {
+                const level = Math.round(battery.level * 100);
+                const target = parseInt(document.getElementById('target').value);
+                statusText.innerText = level + "%";
+                document.getElementById('percent-inner').innerText = level + "%";
+                fill.style.height = level + "%";
+
+                if(systemArmed && level >= target && battery.charging) {
+                    alarm.play();
+                    document.getElementById('radarCircles').classList.remove('hidden');
+                    document.getElementById('stopBtn').classList.remove('hidden');
+                    subMsg.innerText = "⚠️ TARGET REACHED!";
+                }
+            };
+            battery.onlevelchange = update;
+            battery.onchargingchange = update;
+            update();
+        });
+
+        function stopAlarm() {
+            alarm.pause();
+            alarm.currentTime = 0;
+            document.getElementById('radarCircles').classList.add('hidden');
+            document.getElementById('stopBtn').classList.add('hidden');
+        }
+
+        // Service Worker for Background Stability
+        if ('serviceWorker' in navigator) {
+            navigator.serviceWorker.register('data:text/javascript;base64,c2VsZi5hZGRFdmVudExpc3RlbmVyKCdmZXRjaCcsIGZ1bmN0aW9uKGV2ZW50KSB7IH0pOw==');
+        }
+    </script>
+</body>
+</html>
