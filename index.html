@@ -3,62 +3,204 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gohar Digital Hub | Professional App Store</title>
+    <title>Gohar Digital Hub | Premium Store</title>
     <style>
-        :root { --fb-blue: #1877F2; --bg: #f0f2f5; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding-bottom: 50px; }
-        header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
-        header h1 { color: var(--fb-blue); margin: 0; font-size: 26px; }
-        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
-        .app-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s; display: flex; flex-direction: column; }
-        .app-card:hover { transform: translateY(-8px); }
-        .ss-box { width: 100%; height: 220px; background: #e4e6eb; position: relative; }
-        .ss-box img { width: 100%; height: 100%; object-fit: contain; background: #f9f9f9; }
-        .info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
-        .title { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #1c1e21; }
-        .desc { font-size: 14px; color: #65676b; margin-bottom: 20px; line-height: 1.5; }
-        .btn { background: var(--fb-blue); color: white; text-align: center; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: auto; transition: 0.2s; }
-        .btn:hover { background: #166fe5; }
-        footer { text-align: center; padding: 20px; color: #65676b; font-size: 14px; }
+        :root {
+            --primary: #00d2ff;
+            --secondary: #3a7bd5;
+            --bg: #0f172a;
+            --card-bg: rgba(255, 255, 255, 0.05);
+            --text: #f8fafc;
+        }
+
+        body {
+            font-family: 'Inter', 'Segoe UI', sans-serif;
+            background: radial-gradient(circle at top, #1e293b, #0f172a);
+            color: var(--text);
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+        }
+
+        header {
+            padding: 40px 20px;
+            text-align: center;
+            background: rgba(15, 23, 42, 0.8);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: -1px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 40px auto;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 30px;
+            padding: 0 20px;
+        }
+
+        .app-card {
+            background: var(--card-bg);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 24px;
+            overflow: hidden;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            backdrop-filter: blur(5px);
+        }
+
+        .app-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--primary);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .img-container {
+            width: 100%;
+            height: 220px;
+            background: #1e293b;
+            position: relative;
+        }
+
+        .img-container img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.5s;
+        }
+
+        .app-card:hover .img-container img {
+            transform: scale(1.1);
+        }
+
+        .content {
+            padding: 25px;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #fff;
+        }
+
+        .desc {
+            font-size: 0.95rem;
+            color: #94a3b8;
+            line-height: 1.6;
+            margin-bottom: 25px;
+            height: 50px;
+            overflow: hidden;
+        }
+
+        .download-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(45deg, var(--primary), var(--secondary));
+            color: white;
+            text-decoration: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-weight: 600;
+            gap: 10px;
+            transition: 0.3s;
+        }
+
+        .download-btn:hover {
+            filter: brightness(1.2);
+            box-shadow: 0 0 20px rgba(0, 210, 255, 0.4);
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        /* Loading Animation */
+        .loader {
+            text-align: center;
+            padding: 50px;
+            font-size: 1.2rem;
+            color: var(--primary);
+        }
     </style>
 </head>
 <body>
 
-<header><h1>Gohar Digital Hub</h1></header>
+<header>
+    <h1>Gohar Digital Hub</h1>
+</header>
+
 <div class="container" id="app-list">
-    </div>
-<footer>© 2026 Magohar Apps. All Rights Reserved.</footer>
+    <div class="loader">Fetching your amazing apps...</div>
+</div>
+
+<footer>
+    &copy; 2026 Gohar Digital Hub. Crafted with ❤️ for Mobile Users.
+</footer>
 
 <script>
-    // --- SIRF YAHAN NEW APP ADD KAREIN ---
-    const myApps = [
-        {
-            name: "Zakat Calculator",
-            description: "Professional tool for accurate Zakat calculations based on current gold/silver rates.",
-            image: "https://raw.githubusercontent.com/magohar11-coder/Zonar/main/screenshot.jpg", 
-            link: "https://github.com/magohar11-coder/Zonar/releases/download/V1.0/Zakat.Calculator.apk"
-        },
-        {
-            name: "Digital Tasbih",
-            description: "Elegant and easy-to-use digital counter for your daily Dhikr and Tasbih.",
-            image: "https://raw.githubusercontent.com/magohar11-coder/Divine-Beads-/main/screenshot.jpg",
-            link: "https://github.com/magohar11-coder/Divine-Beads-/releases/download/v1.0.0/Digital.Tasbih.V.01.apk"
-        }
-        // Agli baar nayi app ke liye bas upar wala hissa copy karke niche paste kar dena
-    ];
+    // Aapka provided CSV link
+    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdyGaK1NzoilUaClykH8InRTtqZkOBeb256jVL8AEwe8uiko4IRmCR6GyZ3xnWKts6ZLfAkiVGjZVL/pub?output=csv';
 
-    const listArea = document.getElementById('app-list');
-    myApps.forEach(app => {
-        listArea.innerHTML += `
-            <div class="app-card">
-                <div class="ss-box"><img src="${app.image}" onerror="this.src='https://via.placeholder.com/400x220?text=App+Screenshot'"></div>
-                <div class="info">
-                    <div class="title">${app.name}</div>
-                    <div class="desc">${app.description}</div>
-                    <a href="${app.link}" class="btn">Download APK</a>
-                </div>
-            </div>`;
-    });
+    async function loadApps() {
+        try {
+            const response = await fetch(csvUrl);
+            const data = await response.text();
+            const rows = data.split('\n').slice(1);
+            
+            const listArea = document.getElementById('app-list');
+            listArea.innerHTML = '';
+
+            rows.forEach(row => {
+                // CSV columns split handling for links with commas
+                const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
+                
+                if (cols && cols.length >= 4) {
+                    const name = cols[0].replace(/"/g, "");
+                    const desc = cols[1].replace(/"/g, "");
+                    const img = cols[2].replace(/"/g, "");
+                    const link = cols[3].replace(/"/g, "");
+
+                    listArea.innerHTML += `
+                        <div class="app-card">
+                            <div class="img-container">
+                                <img src="${img}" onerror="this.src='https://via.placeholder.com/400x220/1e293b/00d2ff?text=${name}'">
+                            </div>
+                            <div class="content">
+                                <div class="title">${name}</div>
+                                <div class="desc">${desc}</div>
+                                <a href="${link}" class="download-btn">
+                                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="Path d="M4 16v1a3 3 0 003 3h10a3 3 0 003-3v-1m-4-4l-4 4m0 0l-4-4m4 4V4"></path>
+                                    </svg>
+                                    Download APK
+                                </a>
+                            </div>
+                        </div>`;
+                }
+            });
+        } catch (error) {
+            document.getElementById('app-list').innerHTML = '<div class="loader" style="color:red">Error loading apps. Please check Sheet Publishing!</div>';
+        }
+    }
+
+    loadApps();
 </script>
+
 </body>
 </html>
