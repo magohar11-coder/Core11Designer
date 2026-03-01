@@ -3,150 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My App Store | Professional Downloads</title>
+    <title>Gohar Digital Hub | Professional App Store</title>
     <style>
-        :root {
-            --fb-blue: #1877F2;
-            --bg-gray: #f0f2f5;
-            --card-shadow: 0 4px 12px rgba(0,0,0,0.1);
-        }
-
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg-gray);
-            margin: 0;
-            padding: 0;
-            color: #1c1e21;
-        }
-
-        header {
-            background-color: white;
-            padding: 15px;
-            text-align: center;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
-        }
-
-        header h1 {
-            color: var(--fb-blue);
-            margin: 0;
-            font-size: 24px;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 20px auto;
-            padding: 10px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 20px;
-        }
-
-        /* App Card Style */
-        .app-card {
-            background: white;
-            border-radius: 12px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: transform 0.2s;
-        }
-
-        .app-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .screenshot-container {
-            width: 100%;
-            height: 200px;
-            background-color: #ddd;
-            overflow: hidden;
-        }
-
-        .screenshot-container img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-        }
-
-        .app-details {
-            padding: 15px;
-        }
-
-        .app-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 8px;
-        }
-
-        .app-desc {
-            font-size: 14px;
-            color: #65676b;
-            margin-bottom: 15px;
-            height: 40px;
-            overflow: hidden;
-        }
-
-        .download-btn {
-            display: block;
-            background-color: var(--fb-blue);
-            color: white;
-            text-align: center;
-            padding: 10px;
-            text-decoration: none;
-            border-radius: 8px;
-            font-weight: 600;
-            transition: opacity 0.2s;
-        }
-
-        .download-btn:hover {
-            opacity: 0.9;
-        }
-
-        footer {
-            text-align: center;
-            padding: 20px;
-            color: #65676b;
-            font-size: 12px;
-        }
+        :root { --fb-blue: #1877F2; --bg: #f0f2f5; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); margin: 0; padding-bottom: 50px; }
+        header { background: white; padding: 20px; text-align: center; box-shadow: 0 2px 5px rgba(0,0,0,0.1); position: sticky; top: 0; z-index: 100; }
+        header h1 { color: var(--fb-blue); margin: 0; font-size: 26px; }
+        .container { max-width: 1100px; margin: 30px auto; padding: 0 15px; display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 25px; }
+        .app-card { background: white; border-radius: 15px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.08); transition: 0.3s; display: flex; flex-direction: column; }
+        .app-card:hover { transform: translateY(-8px); }
+        .ss-box { width: 100%; height: 220px; background: #e4e6eb; position: relative; }
+        .ss-box img { width: 100%; height: 100%; object-fit: contain; background: #f9f9f9; }
+        .info { padding: 20px; flex-grow: 1; display: flex; flex-direction: column; }
+        .title { font-size: 20px; font-weight: 700; margin-bottom: 10px; color: #1c1e21; }
+        .desc { font-size: 14px; color: #65676b; margin-bottom: 20px; line-height: 1.5; }
+        .btn { background: var(--fb-blue); color: white; text-align: center; padding: 12px; text-decoration: none; border-radius: 8px; font-weight: 600; margin-top: auto; transition: 0.2s; }
+        .btn:hover { background: #166fe5; }
+        footer { text-align: center; padding: 20px; color: #65676b; font-size: 14px; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Magohar App Store</h1>
-</header>
-
-<div class="container">
-
-    <div class="app-card">
-        <div class="screenshot-container">
-            <img src="https://via.placeholder.com/400x200?text=Zakat+Calculator+Screenshot" alt="Zakat Calculator">
-        </div>
-        <div class="app-details">
-            <div class="app-title">Zakat Calculator</div>
-            <div class="app-desc">Professional tool for accurate Zakat calculations.</div>
-            <a href="https://github.com/magohar11-coder/Zonar/releases/download/V1.0/Zakat.Calculator.apk" class="download-btn">Download APK</a>
-        </div>
+<header><h1>Gohar Digital Hub</h1></header>
+<div class="container" id="app-list">
     </div>
+<footer>© 2026 Magohar Apps. All Rights Reserved.</footer>
 
-    <div class="app-card">
-        <div class="screenshot-container">
-            <img src="https://via.placeholder.com/400x200?text=Digital+Tasbih+Screenshot" alt="Digital Tasbih">
-        </div>
-        <div class="app-details">
-            <div class="app-title">Digital Tasbih</div>
-            <div class="app-desc">Modern Dhikr counter with beautiful interface.</div>
-            <a href="https://github.com/magohar11-coder/Divine-Beads-/releases/download/v1.0.0/Digital.Tasbih.V.01.apk" class="download-btn">Download APK</a>
-        </div>
-    </div>
+<script>
+    // --- SIRF YAHAN NEW APP ADD KAREIN ---
+    const myApps = [
+        {
+            name: "Zakat Calculator",
+            description: "Professional tool for accurate Zakat calculations based on current gold/silver rates.",
+            image: "https://raw.githubusercontent.com/magohar11-coder/Zonar/main/screenshot.jpg", 
+            link: "https://github.com/magohar11-coder/Zonar/releases/download/V1.0/Zakat.Calculator.apk"
+        },
+        {
+            name: "Digital Tasbih",
+            description: "Elegant and easy-to-use digital counter for your daily Dhikr and Tasbih.",
+            image: "https://raw.githubusercontent.com/magohar11-coder/Divine-Beads-/main/screenshot.jpg",
+            link: "https://github.com/magohar11-coder/Divine-Beads-/releases/download/v1.0.0/Digital.Tasbih.V.01.apk"
+        }
+        // Agli baar nayi app ke liye bas upar wala hissa copy karke niche paste kar dena
+    ];
 
-    </div>
-
-<footer>
-    &copy; 2026 Magohar Apps. All Rights Reserved.
-</footer>
-
+    const listArea = document.getElementById('app-list');
+    myApps.forEach(app => {
+        listArea.innerHTML += `
+            <div class="app-card">
+                <div class="ss-box"><img src="${app.image}" onerror="this.src='https://via.placeholder.com/400x220?text=App+Screenshot'"></div>
+                <div class="info">
+                    <div class="title">${app.name}</div>
+                    <div class="desc">${app.description}</div>
+                    <a href="${app.link}" class="btn">Download APK</a>
+                </div>
+            </div>`;
+    });
+</script>
 </body>
 </html>
