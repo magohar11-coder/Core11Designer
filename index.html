@@ -3,140 +3,128 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gohar Digital Hub</title>
+    <title>Gohar Digital Hub | Professional Portfolio</title>
     <style>
         :root {
-            --primary: #2563eb; /* Modern Blue */
-            --bg: #f8fafc;
-            --card-bg: #ffffff;
-            --text-main: #1e293b;
-            --text-sub: #64748b;
+            --primary: #2563eb;
+            --text-dark: #0f172a;
+            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
         }
 
         body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background-color: var(--bg);
-            color: var(--text-main);
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
             margin: 0;
             padding: 0;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            /* Background image jo aapne screenshot mein dikhayi thi */
+            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+                        url('https://www.shutterstock.com/image-photo/computer-display-on-work-desk-260nw-2527019777.jpg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-position: center;
+            color: var(--text-dark);
+            min-height: 100vh;
         }
 
         header {
-            width: 100%;
-            background-color: var(--card-bg);
-            padding: 25px 0;
+            padding: 40px 20px;
             text-align: center;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.05);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
         }
 
         header h1 {
-            margin: 0;
-            color: var(--primary);
-            font-size: 28px;
+            font-size: 3rem;
             font-weight: 800;
+            color: var(--text-dark);
+            margin: 0;
+            letter-spacing: -2px;
         }
 
-        .main-container {
+        .container {
             max-width: 1200px;
-            width: 100%;
+            margin: 0 auto;
             padding: 40px 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 40px;
         }
 
-        /* App Card Style */
         .app-card {
-            background-color: var(--card-bg);
-            border-radius: 20px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+            background: rgba(255, 255, 255, 0.9);
+            backdrop-filter: blur(10px);
+            border-radius: 30px;
             overflow: hidden;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: var(--card-shadow);
+            transition: all 0.4s ease;
             display: flex;
             flex-direction: column;
+            border: 1px solid rgba(255, 255, 255, 0.3);
         }
 
         .app-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+            transform: translateY(-15px);
+            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
         }
 
-        /* Screenshot Container Fix */
-        .screenshot-container {
+        .img-wrapper {
             width: 100%;
-            height: 380px; /* Thoda zyada height mobile screenshots ke liye */
-            background-color: #f1f5f9;
-            overflow: hidden;
+            /* Mobile Screenshot ki puri lambai dikhane ke liye height auto rakhi hai */
+            max-height: 500px; 
+            overflow-y: auto; /* Agar screenshot bahut bada ho toh scroll karega */
+            background: #f1f5f9;
             display: flex;
             justify-content: center;
-            align-items: start; /* Start from top to show header */
-            border-bottom: 1px solid #e2e8f0;
         }
 
-        .screenshot-container img {
-            max-width: 100%;
-            height: auto; /* Width full karega, height khud set hogi */
-            object-fit: contain; /* Puri image dikhayega bina cut kiye */
+        .img-wrapper img {
+            width: 100%;
+            height: auto;
+            object-fit: contain; /* Isse picture kabhi nahi kategi */
+            display: block;
         }
 
-        .app-details {
-            padding: 25px;
+        .content {
+            padding: 30px;
+            text-align: center;
+            flex-grow: 1;
             display: flex;
             flex-direction: column;
-            flex-grow: 1;
+            justify-content: space-between;
         }
 
-        .app-title {
-            font-size: 20px;
+        .title {
+            font-size: 1.8rem;
             font-weight: 700;
-            color: var(--text-main);
-            margin-bottom: 8px;
+            margin-bottom: 10px;
         }
 
-        .app-description {
-            font-size: 14px;
-            color: var(--text-sub);
+        .description {
+            color: #475569;
+            font-size: 1.1rem;
+            margin-bottom: 25px;
             line-height: 1.6;
-            margin-bottom: 20px;
-            flex-grow: 1; /* Pushes button to bottom */
         }
 
         .download-btn {
-            background-color: var(--primary);
+            background: var(--primary);
             color: white;
-            text-align: center;
-            padding: 14px;
             text-decoration: none;
-            border-radius: 12px;
-            font-weight: 600;
-            font-size: 16px;
-            transition: background-color 0.3s ease;
+            padding: 18px 30px;
+            border-radius: 15px;
+            font-weight: 700;
+            font-size: 1.1rem;
+            transition: all 0.3s ease;
+            display: inline-block;
         }
 
         .download-btn:hover {
-            background-color: #1d4ed8;
+            background: #1d4ed8;
+            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
         }
 
         footer {
-            margin-top: auto;
-            padding: 30px;
-            color: var(--text-sub);
-            font-size: 14px;
             text-align: center;
-        }
-
-        /* Loading State */
-        .loading {
-            grid-column: 1 / -1;
-            text-align: center;
-            color: var(--text-sub);
-            padding: 50px;
+            padding: 60px 20px;
+            font-weight: 500;
+            color: #64748b;
         }
     </style>
 </head>
@@ -146,62 +134,52 @@
     <h1>Gohar Digital Hub</h1>
 </header>
 
-<div class="main-container" id="app-gallery">
-    <div class="loading">Apps list taiyar ho rahi hai...</div>
-</div>
+<div class="container" id="gallery">
+    </div>
 
 <footer>
-    &copy; 2026 Gohar Digital Hub. All Rights Reserved.
+    &copy; 2026 M.A. Gohar | Premium App Portfolio
 </footer>
 
 <script>
-    // Aapka CSV link (already updated)
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdyGaK1NzoilUaClykH8InRTtqZkOBeb256jVL8AEwe8uiko4IRmCR6GyZ3xnWKts6ZLfAkiVGjZVL/pub?output=csv';
 
-    async function loadApps() {
+    async function fetchApps() {
         try {
-            const response = await fetch(csvUrl);
-            const data = await response.text();
+            const res = await fetch(csvUrl);
+            const data = await res.text();
+            const rows = data.split('\n').slice(1);
             
-            const rows = data.split('\n');
-            const gallery = document.getElementById('app-gallery');
-            gallery.innerHTML = ''; // Loading text mitao
-
-            // Start loop from 1 to skip header row
-            for (let i = 1; i < rows.length; i++) {
-                // Split handling commas within quotes
-                const cols = rows[i].match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                
+            let html = '';
+            rows.forEach(row => {
+                const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
                 if (cols && cols.length >= 4) {
                     const name = cols[0].replace(/"/g, "");
                     const desc = cols[1].replace(/"/g, "");
                     const img = cols[2].replace(/"/g, "");
                     const link = cols[3].replace(/"/g, "");
 
-                    // Standard Placeholder if no image provided
-                    const finalImg = img || 'https://via.placeholder.com/300x380/f1f5f9/94a3b8?text=No+Screenshot';
-
-                    const cardHtml = `
+                    html += `
                         <div class="app-card">
-                            <div class="screenshot-container">
-                                <img src="${finalImg}" alt="${name} Screenshot">
+                            <div class="img-wrapper">
+                                <img src="${img}" alt="${name}">
                             </div>
-                            <div class="app-details">
-                                <div class="app-title">${name}</div>
-                                <div class="app-description">${desc}</div>
+                            <div class="content">
+                                <div>
+                                    <div class="title">${name}</div>
+                                    <div class="description">${desc}</div>
+                                </div>
                                 <a href="${link}" class="download-btn">Download APK</a>
                             </div>
                         </div>`;
-                    gallery.innerHTML += cardHtml;
                 }
-            }
-        } catch (error) {
-            console.error("Error loading apps:", error);
-            document.getElementById('app-gallery').innerHTML = '<div class="loading" style="color:red">Error loading apps list. Google Sheet publish settings check karein.</div>';
+            });
+            document.getElementById('gallery').innerHTML = html;
+        } catch (e) {
+            document.getElementById('gallery').innerHTML = '<h2 style="text-align:center; grid-column:1/-1;">Error loading apps. Check CSV link!</h2>';
         }
     }
-
-    loadApps();
+    fetchApps();
 </script>
 
 </body>
