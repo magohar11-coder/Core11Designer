@@ -3,153 +3,95 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gohar Digital Hub | Professional Portfolio</title>
+    <title>Gohar Digital Hub | Minimal Store</title>
     <style>
-        :root {
-            --primary: #2563eb;
-            --text-dark: #0f172a;
-            --card-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-        }
-
         body {
-            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            font-family: 'Segoe UI', sans-serif;
             margin: 0;
-            padding: 0;
-            /* Background image jo aapne screenshot mein dikhayi thi */
-            background: linear-gradient(rgba(255, 255, 255, 0.8), rgba(255, 255, 255, 0.8)), 
+            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
                         url('https://www.shutterstock.com/image-photo/computer-display-on-work-desk-260nw-2527019777.jpg');
             background-size: cover;
             background-attachment: fixed;
-            background-position: center;
-            color: var(--text-dark);
             min-height: 100vh;
         }
 
-        header {
-            padding: 40px 20px;
-            text-align: center;
-        }
-
-        header h1 {
-            font-size: 3rem;
-            font-weight: 800;
-            color: var(--text-dark);
-            margin: 0;
-            letter-spacing: -2px;
-        }
+        header { padding: 30px; text-align: center; color: #1e293b; }
+        header h1 { font-size: 2.2rem; margin: 0; font-weight: 800; }
 
         .container {
-            max-width: 1200px;
+            max-width: 1000px;
             margin: 0 auto;
-            padding: 40px 20px;
+            padding: 20px;
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
-            gap: 40px;
-        }
-
-        .app-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(10px);
-            border-radius: 30px;
-            overflow: hidden;
-            box-shadow: var(--card-shadow);
-            transition: all 0.4s ease;
-            display: flex;
-            flex-direction: column;
-            border: 1px solid rgba(255, 255, 255, 0.3);
-        }
-
-        .app-card:hover {
-            transform: translateY(-15px);
-            box-shadow: 0 35px 60px -15px rgba(0, 0, 0, 0.3);
-        }
-
-        .img-wrapper {
-            width: 100%;
-            /* Mobile Screenshot ki puri lambai dikhane ke liye height auto rakhi hai */
-            max-height: 500px; 
-            overflow-y: auto; /* Agar screenshot bahut bada ho toh scroll karega */
-            background: #f1f5f9;
-            display: flex;
+            /* Cards ki width ko chota kiya gaya hai */
+            grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); 
+            gap: 25px;
             justify-content: center;
         }
 
-        .img-wrapper img {
+        .app-card {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
+            transition: 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+
+        .app-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
+
+        /* Image size ko 2x1 ratio ke hisab se set kiya gaya hai */
+        .img-box {
             width: 100%;
-            height: auto;
-            object-fit: contain; /* Isse picture kabhi nahi kategi */
-            display: block;
-        }
-
-        .content {
-            padding: 30px;
-            text-align: center;
-            flex-grow: 1;
+            height: 320px; /* Choti height taaki pic bohot badi na lage */
+            background: #f8fafc;
             display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            justify-content: center;
+            align-items: center;
+            padding: 10px;
         }
 
-        .title {
-            font-size: 1.8rem;
-            font-weight: 700;
-            margin-bottom: 10px;
+        .img-box img {
+            max-width: 100%;
+            max-height: 100%;
+            object-fit: contain;
+            border-radius: 10px;
         }
 
-        .description {
-            color: #475569;
-            font-size: 1.1rem;
-            margin-bottom: 25px;
-            line-height: 1.6;
-        }
+        .info { padding: 20px; text-align: center; }
+        .title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: #0f172a; }
+        .desc { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; height: 40px; overflow: hidden; }
 
-        .download-btn {
-            background: var(--primary);
+        .btn {
+            display: block;
+            background: #2563eb;
             color: white;
             text-decoration: none;
-            padding: 18px 30px;
-            border-radius: 15px;
-            font-weight: 700;
-            font-size: 1.1rem;
-            transition: all 0.3s ease;
-            display: inline-block;
+            padding: 12px;
+            border-radius: 10px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
         }
+        .btn:hover { background: #1d4ed8; }
 
-        .download-btn:hover {
-            background: #1d4ed8;
-            box-shadow: 0 10px 15px -3px rgba(37, 99, 235, 0.4);
-        }
-
-        footer {
-            text-align: center;
-            padding: 60px 20px;
-            font-weight: 500;
-            color: #64748b;
-        }
+        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
-<header>
-    <h1>Gohar Digital Hub</h1>
-</header>
-
-<div class="container" id="gallery">
-    </div>
-
-<footer>
-    &copy; 2026 M.A. Gohar | Premium App Portfolio
-</footer>
+<header><h1>Gohar Digital Hub</h1></header>
+<div class="container" id="app-gallery">Loading...</div>
+<footer>© 2026 M.A. Gohar</footer>
 
 <script>
     const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdyGaK1NzoilUaClykH8InRTtqZkOBeb256jVL8AEwe8uiko4IRmCR6GyZ3xnWKts6ZLfAkiVGjZVL/pub?output=csv';
 
-    async function fetchApps() {
+    async function load() {
         try {
             const res = await fetch(csvUrl);
             const data = await res.text();
             const rows = data.split('\n').slice(1);
-            
             let html = '';
             rows.forEach(row => {
                 const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
@@ -161,26 +103,19 @@
 
                     html += `
                         <div class="app-card">
-                            <div class="img-wrapper">
-                                <img src="${img}" alt="${name}">
-                            </div>
-                            <div class="content">
-                                <div>
-                                    <div class="title">${name}</div>
-                                    <div class="description">${desc}</div>
-                                </div>
-                                <a href="${link}" class="download-btn">Download APK</a>
+                            <div class="img-box"><img src="${img}"></div>
+                            <div class="info">
+                                <div class="title">${name}</div>
+                                <div class="desc">${desc}</div>
+                                <a href="${link}" class="btn">Download APK</a>
                             </div>
                         </div>`;
                 }
             });
-            document.getElementById('gallery').innerHTML = html;
-        } catch (e) {
-            document.getElementById('gallery').innerHTML = '<h2 style="text-align:center; grid-column:1/-1;">Error loading apps. Check CSV link!</h2>';
-        }
+            document.getElementById('app-gallery').innerHTML = html;
+        } catch (e) { console.error(e); }
     }
-    fetchApps();
+    load();
 </script>
-
 </body>
 </html>
