@@ -3,120 +3,191 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Gohar Digital Hub | Minimal Store</title>
+    <title>Core11 Apps Store & DEALS</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <style>
         body {
-            font-family: 'Segoe UI', sans-serif;
-            margin: 0;
-            background: linear-gradient(rgba(255, 255, 255, 0.85), rgba(255, 255, 255, 0.85)), 
-                        url('https://www.shutterstock.com/image-photo/computer-display-on-work-desk-260nw-2527019777.jpg');
-            background-size: cover;
+            background-image: linear-gradient(rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.88)), 
+                              url('https://images.unsplash.com/photo-1483985988355-763728e1935b?q=80&w=2070&auto=format&fit=crop');
             background-attachment: fixed;
-            min-height: 100vh;
+            background-size: cover;
+            background-position: center;
         }
-
-        header { padding: 30px; text-align: center; color: #1e293b; }
-        header h1 { font-size: 2.2rem; margin: 0; font-weight: 800; }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 20px;
-            display: grid;
-            /* Cards ki width ko chota kiya gaya hai */
-            grid-template-columns: repeat(auto-fit, minmax(220px, 280px)); 
-            gap: 25px;
-            justify-content: center;
+        .sticky-hero {
+            position: sticky;
+            top: 72px;
+            z-index: 40;
+            background: rgba(255, 255, 255, 0.8);
+            backdrop-filter: blur(12px);
+            padding-bottom: 15px;
         }
-
-        .app-card {
-            background: rgba(255, 255, 255, 0.95);
-            border-radius: 20px;
-            overflow: hidden;
-            box-shadow: 0 10px 20px rgba(0,0,0,0.05);
-            transition: 0.3s;
-            border: 1px solid #e2e8f0;
-        }
-
-        .app-card:hover { transform: translateY(-8px); box-shadow: 0 15px 30px rgba(0,0,0,0.1); }
-
-        /* Image size ko 2x1 ratio ke hisab se set kiya gaya hai */
-        .img-box {
-            width: 100%;
-            height: 320px; /* Choti height taaki pic bohot badi na lage */
-            background: #f8fafc;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            padding: 10px;
-        }
-
-        .img-box img {
-            max-width: 100%;
-            max-height: 100%;
-            object-fit: contain;
-            border-radius: 10px;
-        }
-
-        .info { padding: 20px; text-align: center; }
-        .title { font-size: 1.2rem; font-weight: 700; margin-bottom: 5px; color: #0f172a; }
-        .desc { font-size: 0.9rem; color: #64748b; margin-bottom: 15px; height: 40px; overflow: hidden; }
-
-        .btn {
-            display: block;
-            background: #2563eb;
-            color: white;
-            text-decoration: none;
-            padding: 12px;
-            border-radius: 10px;
-            font-weight: 600;
-            font-size: 0.9rem;
-            transition: 0.2s;
-        }
-        .btn:hover { background: #1d4ed8; }
-
-        footer { text-align: center; padding: 40px; color: #94a3b8; font-size: 0.8rem; }
+        .card-hover { transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); }
+        .card-hover:hover { transform: translateY(-10px); box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.15); }
+        .glass { background: rgba(255, 255, 255, 0.7); backdrop-filter: blur(10px); }
+        .filter-btn.active { background-color: #2563eb !important; color: white !important; border-color: #2563eb !important; }
+        .fade-img { transition: opacity 0.5s ease-in-out; }
     </style>
 </head>
-<body>
+<body class="font-sans antialiased text-slate-900">
 
-<header><h1><font color="Green">Core11 App Store</h1></header><p> 
-    <p><h1><font color="purple">Powered By M.A.Gohar</h1></p></Font><p><b><font Size="6"><Font color="green">100% Safe & Secure: Our apps respect your privacy. No Ads, No Data Collection, and No Unnecessary Permissions required.</b></font></font></font></p>
-<div class="container" id="app-gallery">Loading...</div>
-<footer><font size="5">© 2026 M.A. Gohar</footer>
+    <header class="glass border-b sticky top-0 z-50 py-4 px-6 flex flex-wrap justify-between items-center gap-4">
+        <div>
+            <h1 class="text-2xl font-black text-blue-600 tracking-tighter uppercase italic">EXCLUSIVE DEALS & APPS</h1>
+            <p class="text-[15px] text-slate-500 font-bold tracking-widest uppercase">Powered By M.A. Gohar</p>
+        </div>
+        <div class="flex gap-3 text-[10px] font-bold">
+            <span class="bg-green-100 text-green-700 px-3 py-1.5 rounded-full border border-green-200 shadow-sm">✓ SECURE PLATFORM</span>
+            <span class="bg-blue-100 text-blue-700 px-3 py-1.5 rounded-full border border-blue-200 shadow-sm">✓ LIVE UPDATES</span>
+        </div>
+    </header>
 
-<script>
-    const csvUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdyGaK1NzoilUaClykH8InRTtqZkOBeb256jVL8AEwe8uiko4IRmCR6GyZ3xnWKts6ZLfAkiVGjZVL/pub?output=csv';
+    <div class="sticky-hero text-center pt-8 border-b border-slate-100">
+        <h2 class="text-3xl font-extrabold text-slate-800 tracking-tight mb-4 uppercase">Core-11 Apps Store & DEALS</h2>
+        
+        <div class="flex flex-wrap justify-center gap-2 px-4 mb-2">
+            <button onclick="filterCategory('all', this)" class="filter-btn active px-5 py-2 rounded-full border border-blue-200 text-xs font-bold uppercase tracking-wider transition">All</button>
+            <button onclick="filterCategory('men', this)" class="filter-btn px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase tracking-wider transition bg-white">Men</button>
+            <button onclick="filterCategory('women', this)" class="filter-btn px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase tracking-wider transition bg-white">Women</button>
+            <button onclick="filterCategory('apk', this)" class="filter-btn px-5 py-2 rounded-full border border-slate-200 text-xs font-bold uppercase tracking-wider transition bg-white">Apps/APKs</button>
+        </div>
+    </div>
 
-    async function load() {
-        try {
-            const res = await fetch(csvUrl);
-            const data = await res.text();
-            const rows = data.split('\n').slice(1);
-            let html = '';
-            rows.forEach(row => {
-                const cols = row.match(/(".*?"|[^",\s]+)(?=\s*,|\s*$)/g);
-                if (cols && cols.length >= 4) {
-                    const name = cols[0].replace(/"/g, "");
-                    const desc = cols[1].replace(/"/g, "");
-                    const img = cols[2].replace(/"/g, "");
-                    const link = cols[3].replace(/"/g, "");
+    <main class="max-w-7xl mx-auto p-4 md:p-10">
+        <div id="product-container" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+            <div class="col-span-full py-32 text-center">
+                <div class="inline-block animate-spin rounded-full h-12 w-12 border-4 border-blue-600 border-t-transparent shadow-lg"></div>
+                <p class="mt-6 text-slate-500 font-bold text-lg animate-pulse">Syncing with Gohar's Hub...</p>
+            </div>
+        </div>
+    </main>
 
-                    html += `
-                        <div class="app-card">
-                            <div class="img-box"><img src="${img}"></div>
-                            <div class="info">
-                                <div class="title">${name}</div>
-                                <div class="desc">${desc}</div>
-                                <a href="${link}" class="btn">Download APK</a>
-                            </div>
-                        </div>`;
+    <footer class="mt-20 border-t border-slate-200 bg-white/60 backdrop-blur-md py-12 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+                <div class="bg-white/40 p-6 rounded-2xl border border-slate-100 shadow-sm">
+                    <h4 class="text-blue-600 font-black text-sm uppercase tracking-widest mb-3">Affiliate Notice</h4>
+                    <p class="text-slate-700 text-sm md:text-base leading-relaxed">
+                        We only provide curated links. For any product issues, color mismatches, or delivery concerns, please contact the <b>original seller or marketplace</b> where you completed the purchase. We are not responsible for post-sale services.
+                    </p>
+                </div>
+                <div class="bg-white/40 p-6 rounded-2xl border border-slate-100 shadow-sm border-l-4 border-l-red-500">
+                    <h4 class="text-red-600 font-black text-sm uppercase tracking-widest mb-3">ज़रूरी सूचना</h4>
+                    <p class="text-slate-800 text-sm md:text-base leading-relaxed font-medium">
+                        हम यहाँ सिर्फ अच्छे प्रोडक्ट्स के डायरेक्ट लिंक्स देते हैं। अगर प्रोडक्ट में कोई खराबी, कलर में बदलाव या डिलीवरी की दिक्कत हो, तो कृपया उसी <b>Website/Seller</b> से संपर्क करें जहाँ से आपने उसे खरीदा है। खरीदने के बाद की किसी भी परेशानी के लिए हम ज़िम्मेदार नहीं हैं।
+                    </p>
+                </div>
+            </div>
+            <div class="mt-12 text-center">
+                <p class="text-slate-400 text-[10px] font-black uppercase tracking-[0.3em]">© 2026 Gohar Digital Hub | M.A. Gohar</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        const sheetUrl = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vSdyGaK1NzoilUaClykH8InRTtqZkOBeb256jVL8AEwe8uiko4IRmCR6GyZ3xnWKts6ZLfAkiVGjZVL/pub?output=csv';
+        let allItems = [];
+        let intervals = [];
+
+        async function loadStore() {
+            try {
+                const res = await fetch(sheetUrl);
+                const csvText = await res.text();
+                const rows = csvText.split('\n').slice(1);
+                
+                allItems = rows.map((row, rowIndex) => {
+                    const cols = row.split(/,(?=(?:(?:[^"]*"){2})*[^"]*$)/);
+                    if (cols.length >= 4) {
+                        const name = cols[0].replace(/"/g, '').trim();
+                        const desc = cols[1].replace(/"/g, '').trim();
+                        const imgData = cols[2].replace(/"/g, '').trim();
+                        const link = cols[3].replace(/"/g, '').trim();
+                        const images = imgData.split(',').map(s => s.trim());
+                        
+                        let category = 'other';
+                        const searchZone = (name + " " + desc).toLowerCase();
+
+                        if (link.toLowerCase().includes('.apk')) {
+                            category = 'apk';
+                        } else if (searchZone.includes('women') || searchZone.includes('kurti') || searchZone.includes('anarkali') || searchZone.includes('girl')) {
+                            category = 'women';
+                        } else if (searchZone.includes('men') || searchZone.includes('boy') || searchZone.includes('shirt') || searchZone.includes('watch')) {
+                            category = 'men';
+                        }
+
+                        return { name, desc, images, link, category, id: rowIndex };
+                    }
+                    return null;
+                }).filter(item => item !== null);
+
+                renderItems(allItems);
+            } catch (e) {
+                document.getElementById('product-container').innerHTML = '<p class="text-red-500 text-center font-bold">Failed to load deals.</p>';
+            }
+        }
+
+        function renderItems(items) {
+            const container = document.getElementById('product-container');
+            intervals.forEach(clearInterval);
+            intervals = [];
+            container.innerHTML = '';
+            
+            if (items.length === 0) {
+                container.innerHTML = '<p class="col-span-full text-center py-20 text-slate-400 font-bold">No products found.</p>';
+                return;
+            }
+
+            items.forEach((item) => {
+                const isAPK = item.category === 'apk';
+                const btnText = isAPK ? 'Download APK' : 'Buy Now';
+                const btnColor = isAPK ? 'bg-gradient-to-r from-emerald-500 to-teal-600 hover:from-emerald-600 hover:to-teal-700' : 'bg-gradient-to-r from-blue-600 to-indigo-700 hover:from-blue-700 hover:to-indigo-800';
+                
+                const tagText = isAPK ? 'PREMIUM APP' : (item.category === 'men' ? 'MEN SELECTION' : (item.category === 'women' ? 'WOMEN STYLE' : 'HOT DEAL'));
+                const tagColor = isAPK ? 'bg-emerald-500' : (item.category === 'men' ? 'bg-blue-500' : (item.category === 'women' ? 'bg-pink-500' : 'bg-red-500'));
+
+                const cardId = `img-${item.id}`;
+
+                container.innerHTML += `
+                    <div class="card-hover bg-white rounded-[2rem] p-6 border border-slate-100 shadow-xl flex flex-col h-full relative overflow-hidden">
+                        <span class="absolute top-4 left-4 z-10 ${tagColor} text-white text-[9px] font-black px-3 py-1 rounded-full shadow-lg uppercase tracking-wider">${tagText}</span>
+                        <div class="relative overflow-hidden rounded-2xl bg-slate-50 aspect-square flex items-center justify-center">
+                            <img id="${cardId}" src="${item.images[0]}" class="fade-img w-full h-full object-contain p-6">
+                        </div>
+                        <div class="mt-6 flex-grow">
+                            <h3 class="text-xl font-black text-slate-800 leading-tight">${item.name}</h3>
+                            <p class="text-slate-500 text-xs mt-3 line-clamp-2 font-medium">${item.desc}</p>
+                        </div>
+                        <div class="mt-8">
+                            <a href="${item.link}" target="_blank" class="block w-full text-center text-white text-sm font-black py-4 rounded-2xl shadow-lg transition transform active:scale-95 ${btnColor}">${btnText}</a>
+                        </div>
+                    </div>
+                `;
+
+                if (item.images.length > 1) {
+                    let currentIdx = 0;
+                    const interval = setInterval(() => {
+                        currentIdx = (currentIdx + 1) % item.images.length;
+                        const imgElement = document.getElementById(cardId);
+                        if (imgElement) {
+                            imgElement.style.opacity = '0';
+                            setTimeout(() => {
+                                imgElement.src = item.images[currentIdx];
+                                imgElement.style.opacity = '1';
+                            }, 500);
+                        }
+                    }, 3500);
+                    intervals.push(interval);
                 }
             });
-            document.getElementById('app-gallery').innerHTML = html;
-        } catch (e) { console.error(e); }
-    }
-    load();
-</script>
+        }
+
+        function filterCategory(cat, btn) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            if (cat === 'all') renderItems(allItems);
+            else renderItems(allItems.filter(item => item.category === cat));
+        }
+
+        loadStore();
+    </script>
 </body>
 </html>
