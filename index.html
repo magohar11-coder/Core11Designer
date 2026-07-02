@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -39,14 +38,14 @@
         }
         .product-card:hover { transform: translateY(-5px); }
         .img-box { height: 280px; width: 100%; display: flex; align-items: center; justify-content: center; background: #f8fafc; border-radius: 1rem; overflow: hidden; position: relative; }
-        .slide-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; height: 100%; }
-        .slide-container img { min-width: 100%; height: 100%; object-fit: contain; padding: 10px; flex-shrink: 0; }        
+        .slide-container { display: flex; transition: transform 0.5s ease-in-out; width: 100%; height: 100%; touch-action: pan-y; }
+        .slide-container img { min-width: 100%; height: 100%; object-fit: contain; padding: 10px; flex-shrink: 0; user-select: none; -webkit-user-drag: none; }        
         
         #loader { position: fixed; inset: 0; background: #070b19; z-index: 200000; display: flex; flex-direction: column; align-items: center; justify-content: center; overflow: hidden; }
         .satellite-system { position: relative; width: 360px; height: 280px; background: radial-gradient(circle at center, rgba(30,41,59,0.6) 0%, transparent 75%); }
         
         .main-satellite { position: absolute; top: 30px; left: 50%; transform: translateX(-50%); width: 70px; height: 90px; display: flex; flex-direction: column; align-items: center; animation: floatSat 3.5s ease-in-out infinite alternate; z-index: 10; }
-        .sat-core { width: 34px; height: 50px; background: linear-gradient(135deg, #e2e8f0 0%, #cbd5e1 50%, #94a3b8 100%); border: 2px solid #475569; border-radius: 6px; position: relative; box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15), 0 0 20px rgba(255,255,255,0.1); }
+        .sat-core { width: 34px; height: 50px; background: linear-gradient(135deg, #e2e2e2 0%, #cbd5e1 50%, #94a3b8 100%); border: 2px solid #475569; border-radius: 6px; position: relative; box-shadow: inset -3px -3px 0px rgba(0,0,0,0.15), 0 0 20px rgba(255,255,255,0.1); }
         .sat-core::before { content: ''; position: absolute; top: 8px; left: 6px; width: 18px; height: 8px; background: #1e293b; border-radius: 2px; border: 1px solid #64748b; }
         .sat-core::after { content: ''; position: absolute; bottom: 8px; left: 12px; width: 6px; height: 6px; background: #ef4444; border-radius: 50%; animation: pulse 1s infinite; }
         
@@ -160,7 +159,7 @@
             <h3 class="text-2xl font-black text-pink-600 italic mb-2 uppercase tracking-wide">✨ For You Store Deal ✨</h3>
             <div class="w-12 h-1 bg-pink-500 mx-auto mb-4 rounded-full"></div>
             <p class="text-slate-700 text-sm font-bold mb-4 leading-relaxed">Kya aap bhi apne products ya apni shop ke deals hamare is platform par live add karwana chahte hain?</p>
-            <p class="text-slate-700 text-sm font-bold mb-4 leading-relaxed">Naye logon ke liye sunehra mauka! Apne items live karke zyada customers tak pahunchein. Abhi niche click karke humse contact karein.</p>
+            <p class="text-slate-700 text-sm font-bold mb-4 leading-relaxed">Naye logon ke liye sunehra mauka! Apne items live karke zyada customers tak pahunchein. Abhi niche click karent humse contact karein.</p>
             <p class="text-slate-700 text-sm font-bold mb-4 leading-relaxed">Do you want to list your products or shop deals live on our platform? A golden opportunity for new sellers! Reach more customers by showcasing your items live. Click below to contact us now.</p>
             <button onclick="sendWhatsAppMessage('Hello Core11, I want to add my products on your store.')" class="w-full bg-[#25D366] text-white font-black py-3.5 rounded-xl flex items-center justify-center gap-2 mb-4 uppercase italic tracking-wider shadow-lg transform hover:scale-105 transition">
                 <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20"> Contact Us To Add
@@ -169,10 +168,19 @@
         </div>
     </div>
 
-    <div id="quranModal" class="modal-overlay">        <div class="modal-content-quran shadow-2xl">            <h3 class="text-xl font-black text-purple-700 italic mb-4">Sawab-e-Jariya</h3>            <p class="text-slate-600 text-sm mb-6 leading-relaxed">Agar aap apne marhum azizo ko Quran khwani ka sawab pahunchana chahte hain, toh neeche diye gaye button par click karke humein WhatsApp par message karein.</p>            <button onclick="sendWhatsAppMessage('Quran Khwani Inquiry')" class="w-full bg-[#25D366] text-white font-black py-3 rounded-xl flex items-center justify-center gap-2 mb-4 uppercase italic">                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20"> Send Message            </button>            <button onclick="closeQuranModal()" class="text-slate-400 font-bold text-xs uppercase">Close</button>        </div>    </div>
-    <div id="terms-modal">        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl">            <h2 class="text-2xl font-black text-red-600 mb-4 border-b pb-2 uppercase italic text-center">Important Notice</h2>            <div class="space-y-4 text-slate-700 font-medium text-sm leading-relaxed">                <p class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">All product links are from verified platforms like Amazon, Flipkart, and Myntra. Core11 is a directory service; payment and delivery are handled by the respective platforms.</p>                <p>हम आपके लिए सिर्फ Amazon, Flipkart और Myntra जैसे बड़े और भरोसेमंद ब्रांड्स के वेरिफाइड लिंक्स ही लाते हैं। आपकी पूरी खरीदारी सीधे उनकी ऑफिशियल वेबसाइट पर होती है, इसलिए पेमेंट और डिलिवरी की पूरी जिम्मेदारी उन्हीं की होती है। अगर आपको क्वालिटी या पेमेंट से जुड़ी कोई भी परेशानी आती है, तो आप बेझिझक उनकी सपोर्ट टीम से बात कर सकते हैं—वो आपकी पूरी तरह से मदद करेंगे। By using this store, you agree to our terms of service.</p>            </div>            <button onclick="closeTerms()" class="mt-6 w-full bg-slate-900 text-white font-black py-4 rounded-2xl uppercase italic tracking-widest">I Agree & Continue</button>            </div>    </div>
+    <div id="quranModal" class="modal-overlay">        
+        <div class="modal-content-quran shadow-2xl">            
+            <h3 class="text-xl font-black text-purple-700 italic mb-4">Sawab-e-Jariya</h3>            
+            <p class="text-slate-600 text-sm mb-6 leading-relaxed">Agar aap apne marhum azizo ko Quran khwani ka sawab pahunchana chahte hain, toh neeche diye gaye button par click karke humein WhatsApp par message karein.</p>            
+            <button onclick="sendWhatsAppMessage('Quran Khwani Inquiry')" class="w-full bg-[#25D366] text-white font-black py-3 rounded-xl flex items-center justify-center gap-2 mb-4 uppercase italic">                
+                <img src="https://upload.wikimedia.org/wikipedia/commons/6/6b/WhatsApp.svg" width="20"> Send Message            
+            </button>            
+            <button onclick="closeQuranModal()" class="text-slate-400 font-bold text-xs uppercase">Close</button>        
+        </div>    
+    </div>
+    <div id="terms-modal">        <div class="bg-white rounded-3xl p-6 max-w-md w-full shadow-2xl">            <h2 class="text-2xl font-black text-red-600 mb-4 border-b pb-2 uppercase italic text-center">Important Notice</h2>            <div class="space-y-4 text-slate-700 font-medium text-sm leading-relaxed">                <p class="bg-blue-50 p-4 rounded-xl border-l-4 border-blue-500">All product links are from verified platforms like Amazon, Flipkart, and Myntra. Core11 is a directory service; payment and delivery are handled by the respective platforms.</p>                <p>हम आपके लिए सिर्फ Amazon, Flipkart और Myntra जैसे बड़े और भरोसेमंद ब्रांड्स के वेरिफाइड लिंक्स ही लाते हैं। आपकी पूरी खरीदारी सीधे उनकी ऑफिशियल वेबसाइट पर होती है, इसलिए पेमेंट और डिलिवरी की पूरी जिम्मेदारी उन्हीं की होती है। अगर आपको Qualität या पेमेंट से जुड़ी कोई भी परेशानी आती है, तो आप बेझिंधक उनकी सपोर्ट टीम से बात कर सकते हैं—vo आपकी पूरी तरह से मदद करेंगे। By using this store, you agree to our terms of service.</p>            </div>            <button onclick="closeTerms()" class="mt-6 w-full bg-slate-900 text-white font-black py-4 rounded-2xl uppercase italic tracking-widest">I Agree & Continue</button>            </div>    </div>
     <div id="mode-container">        <div class="fixed-header-wrapper">
-            <header class="bg-white border-b py-1.5 px-3 flex justify-between items-center gap-2">                <div class="flex items-center gap-2">                    <img id="site-logo" src="" alt="Logo" class="h-8 w-auto object-contain">                    <div class="border-l border-slate-200 pl-2">                        <h1 class="text-[15px] md:text-[18px] font-black text-purple-600 italic leading-none">Qore-11 Apps Store & Deal</h1>                        <div class="flex items-center gap-2 mt-0.5">                            <p class="text-[9px] text-blue-600 font-black uppercase tracking-tight">Powered By-M.A. Gohar</p> <p class="text-[9px] text-slate-500 font-bold uppercase tracking-tight md:border-l md:pl-2">Copyright © 2025-2026 Qore11. All Rights Reserved.</p>                           <button onclick="showTerms()" class="text-[9px] text-slate-400 underline hover:text-red-500 font-bold uppercase tracking-tight">Terms & Conditions</button>                        </div>                    </div>                </div>
+            <header class="bg-white border-b py-1.5 px-3 flex justify-between items-center gap-2">                <div class="flex items-center gap-2">                    <img id="site-logo" src="" alt="Logo" class="h-8 w-auto object-contain">                    <div class="border-l border-slate-200 pl-2">                        <h1 class="text-[15px] md:text-[18px] font-black text-purple-600 italic leading-none">Qore-11 Apps Store & Deal</h1>                        <div class="flex items-center gap-2 mt-0.5">                            <p class="text-[9px] text-blue-600 font-black uppercase tracking-tight">Powered By-M.A. Gohar</p> <p class="text-[9px] text-slate-500 font-bold uppercase tracking-tight md:border-l md:pl-2">Copyright © 2025-2026 Qore11. All Rights Reserved.</p>                               <button onclick="showTerms()" class="text-[9px] text-slate-400 underline hover:text-red-500 font-bold uppercase tracking-tight">Terms & Conditions</button>                        </div>                    </div>                </div>
                 <button onclick="openNoticeModal()" class="relative bg-blue-600 text-white w-8 h-8 rounded-full flex items-center justify-center text-sm shadow-md hover:bg-blue-700 transition shrink-0 bell-bounce">
                     <i class="fas fa-bell"></i>
                     <span class="absolute -top-1 -right-1 bg-red-500 w-2.5 h-2.5 rounded-full border border-white"></span>
@@ -206,6 +214,7 @@
         function toggleView() { document.getElementById('main-body').classList.toggle('mobile-view-active'); }                
         function sendWhatsAppMessage(text) { window.open(`https://wa.me/${myWhatsApp}?text=${encodeURIComponent(text)}`, '_blank'); }
         function sendVendorWhatsApp(number, text) { window.open(`https://wa.me/${number}?text=${encodeURIComponent(text)}`, '_blank'); }
+        function openInstagramProfile(link) { if(link) { window.open(link, '_blank'); } else { alert("Instagram link not available!"); } }
 
         function openNoticeModal() { document.getElementById('noticeModal').style.display = 'flex'; }
         function closeNoticeModal() { document.getElementById('noticeModal').style.display = 'none'; }
@@ -272,6 +281,8 @@
             let uniqueVendors = {};
             
             allItems.forEach(item => {
+                if(item.name && item.name.startsWith('@')) return;
+
                 if(item.desc && item.desc.includes('#')) {
                     const match = item.desc.match(/#(\w+(\s+\w+)?)/);
                     if(match) {
@@ -282,7 +293,8 @@
                             uniqueVendors[tagKey] = {
                                 name: tag,
                                 img: item.images ? item.images[0] : "",
-                                phone: "916265881327"
+                                phone: "", 
+                                insta: ""
                             };
                         }
                     }
@@ -290,18 +302,24 @@
             });
 
             allItems.forEach(item => {
-                let nameClean = item.name;
-                if(item.name.startsWith('@')) {
-                    nameClean = item.name.substring(1).trim();
-                }
-                const nameLower = nameClean.toLowerCase();
-                if(uniqueVendors[nameLower]) {
-                    if(item.images && item.images[0]) uniqueVendors[nameLower].img = item.images[0];
-                    if(item.link) uniqueVendors[nameLower].phone = item.link.replace(/\D/g, '');
+                if(item.name && item.name.startsWith('@')) {
+                    const nameClean = item.name.substring(1).trim();
+                    const nameLower = nameClean.toLowerCase();
+                    if(uniqueVendors[nameLower]) {
+                        if(item.images && item.images[0]) uniqueVendors[nameLower].img = item.images[0];
+                        if(item.link) {
+                            let cleanNum = item.link.replace(/\D/g, '');
+                            uniqueVendors[nameLower].phone = cleanNum || "";
+                        }
+                        if(item.desc && item.desc.toLowerCase().includes("instagram.com")) {
+                            uniqueVendors[nameLower].insta = item.desc.trim();
+                        }
+                    }
                 }
             });
 
             const vendorsArray = Object.values(uniqueVendors);
+            showroomVendors = vendorsArray;
             
             if(vendorsArray.length === 0) {
                 avatarContainer.parentElement.style.display = 'none';
@@ -330,6 +348,44 @@
             document.getElementById('unboxing-iframe').src = "";
         }
 
+        function initTouchSwipe(container) {
+            let startX = 0;
+            let currentIdx = 0;
+            
+            container.addEventListener('touchstart', (e) => {
+                startX = e.touches[0].clientX;
+                currentIdx = parseInt(container.getAttribute('data-current-slide') || '0');
+            }, { passive: true });
+
+            container.addEventListener('touchend', (e) => {
+                const endX = e.changedTouches[0].clientX;
+                const diffX = startX - endX;
+                const imgs = container.querySelectorAll('img');
+                if (imgs.length <= 1) return;
+
+                if (Math.abs(diffX) > 50) { 
+                    if (diffX > 0) {
+                        currentIdx = (currentIdx + 1) % imgs.length;
+                    } else {
+                        currentIdx = (currentIdx - 1 + imgs.length) % imgs.length;
+                    }
+                    container.setAttribute('data-current-slide', currentIdx);
+                    container.style.transform = `translateX(-${currentIdx * 100}%)`;
+                }
+            }, { passive: true });
+        }
+
+        function attachSwipeListeners() {
+            setTimeout(() => {
+                document.querySelectorAll('.slide-container').forEach(container => {
+                    if(!container.hasAttribute('data-swipe-bound')) {
+                        container.setAttribute('data-swipe-bound', 'true');
+                        initTouchSwipe(container);
+                    }
+                });
+            }, 50);
+        }
+
         function renderItems(items) {            
             const container = document.getElementById('product-container');            
             container.innerHTML = items.map(item => {                
@@ -340,192 +396,271 @@
                 let btnClass = "bg-blue-600";                
                 let btnAction = `href="${item.link}" target="_blank" rel="noreferrer"`;
 
+                let showroomExtraHtml = "";
+                let showMainButton = true; 
+
+                let displayDesc = item.desc;
+
                 if(isShowroom) {
-                    btnLabel = "Order from Showroom";
+                    btnLabel = "Order from WhatsApp";
                     btnClass = "bg-purple-600";
-                    btnAction = `data-showroom-item="${item.name}" onclick="handleShowroomClick(this)" style="cursor:pointer"`;
+                    
+                    let matchedVendor = null;
+                    const match = item.desc.match(/#(\w+(\s+\w+)?)/);
+                    let targetPhone = ""; 
+                    
+                    if(match) {
+                        const tag = match[1].trim().toLowerCase();
+                        matchedVendor = showroomVendors.find(v => v.name.toLowerCase() === tag);
+                        if(matchedVendor && matchedVendor.phone && matchedVendor.phone.trim() !== "" && matchedVendor.phone !== "#") {
+                            targetPhone = matchedVendor.phone;
+                        }
+                    }
+                    
+                    displayDesc = displayDesc.replace(/#(\w+(\s+\w+)?)/g, '').replace(/\s+/g, ' ').trim();
+                    
+                    if(!targetPhone) {
+                        showMainButton = false;
+                    } else {
+                        btnAction = `onclick="sendVendorWhatsApp('${targetPhone}', 'Hello, I am interested in ordering: ${item.name}')" style="cursor:pointer"`;
+                    }
+                    
+                    let instaLink = matchedVendor ? matchedVendor.insta : "";
+                    if(instaLink) {
+                        showroomExtraHtml = `
+                        <button onclick="openInstagramProfile('${instaLink}')" class="w-full mt-2 bg-gradient-to-r from-purple-500 via-pink-500 to-orange-500 text-white font-black py-2.5 rounded-xl uppercase flex items-center justify-center gap-2 text-xs transition transform hover:scale-102 shadow">
+                            <i class="fab fa-instagram text-lg"></i> Visit Instagram
+                        </button>`;
+                    }
                 } else if(isLocal) {                    
                     btnLabel = "Order on WhatsApp";                    
                     btnClass = "bg-purple-600";                    
                     btnAction = `onclick="sendWhatsAppMessage('Interested in: ${item.name}')" style="cursor:pointer"`;                
                 } else if(isAPK) {                    
-                    btnLabel = "Install Now";                    
-                    btnClass = "bg-emerald-500";                
-                }                
-                const cleanDesc = item.desc.replace(/#\w+(\s+\w+)?/g, '').replace(/[.`]/g, '').trim();
+                    btnLabel = "Download APK";                    
+                    btnClass = "bg-green-600";                
+                } else if(item.link.toLowerCase().includes('flipkart.com')) {                    
+                    btnLabel = "Buy on Flipkart";                    
+                    btnClass = "bg-amber-500";                
+                } else if(item.link.toLowerCase().includes('amazon.')) {                    
+                    btnLabel = "Buy on Amazon";                    
+                    btnClass = "bg-orange-500";                
+                }
 
-                let unboxingBtnHtml = "";
-                if(isShowroom && item.video && item.video.trim() !== "") {
-                    unboxingBtnHtml = `
-                    <button onclick="playUnboxingVideo('${item.video.trim()}')" class="w-full mb-2 border-2 border-red-500 text-red-500 hover:bg-red-50 text-[10px] font-black py-2 rounded-xl uppercase flex items-center justify-center gap-1"><i class="fab fa-youtube text-lg"></i> 🎬 Customer Unboxing</button>`;
+                let videoBtnHtml = "";
+                if (item.video && extractYouTubeId(item.video)) {
+                    videoBtnHtml = `
+                    <button onclick="playUnboxingVideo('${item.video}')" class="absolute bottom-2 right-2 bg-red-600 text-white font-black text-[9px] px-2.5 py-1 rounded-full uppercase flex items-center gap-1 shadow-md z-10 hover:bg-red-700 transition">
+                        <i class="fas fa-play text-[8px]"></i> Unboxing
+                    </button>`;
+                }
+
+                let indicatorTag = "";
+                if (isAPK) {
+                    indicatorTag = '<span class="absolute top-2 left-2 bg-green-600 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider z-10 shadow">APP</span>';
+                } else if (isShowroom) {
+                    indicatorTag = '<span class="absolute top-2 left-2 bg-purple-600 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider z-10 shadow">SHOWROOM</span>';
+                } else if (isLocal) {
+                    indicatorTag = '<span class="absolute top-2 left-2 bg-blue-600 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider z-10 shadow">HANDICRAFT</span>';
+                } else {
+                    indicatorTag = '<span class="absolute top-2 left-2 bg-amber-500 text-white text-[8px] font-black px-2 py-0.5 rounded uppercase tracking-wider z-10 shadow">DEAL</span>';
+                }
+
+                let slideHtml = "";
+                if(item.images && item.images.length > 0) {
+                    slideHtml = item.images.map(img => `<img src="${img}" alt="${item.name}" loading="lazy">`).join('');
+                } else {
+                    slideHtml = `<img src="https://via.placeholder.com/400x400?text=No+Image" alt="No Image">`;
                 }
 
                 return `
-                <div class="product-card bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden flex flex-col justify-between">
-                    <div class="img-box">
-                        <div class="slide-container">
-                            ${item.images.map(img => `<img src="${img}" alt="${item.name}">`).join('')}
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden product-card">
+                        <div class="img-box relative">
+                            ${indicatorTag}
+                            <div class="slide-container" data-card-id="${item.id}">
+                                ${slideHtml}
+                            </div>
+                            ${videoBtnHtml}
+                        </div>
+                        <div class="mt-2 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h3 class="text-[11px] font-black text-slate-800 uppercase tracking-tight line-clamp-1">${item.name}</h3>
+                                <p class="text-[10px] text-slate-500 font-bold mt-0.5 leading-tight whitespace-pre-wrap break-words">${displayDesc}</p>
+                            </div>
+                            <div class="mt-2">
+                                ${showMainButton ? `
+                                <a ${btnAction} class="block w-full ${btnClass} text-white font-black text-center py-2.5 rounded-xl uppercase tracking-wider text-xs shadow-sm hover:opacity-90 transition">
+                                    ${btnLabel}
+                                </a>` : ''}
+                                ${showroomExtraHtml}
+                            </div>
                         </div>
                     </div>
-                    <div class="p-3 flex-grow flex flex-col justify-between">
-                        <div class="mb-3">
-                            <h4 class="text-xs font-black uppercase text-slate-800 mb-1">${item.name}</h4>
-                            <p class="text-[10px] text-slate-500 font-medium leading-relaxed">${cleanDesc}</p>
-                        </div>
-                        <div>
-                            ${unboxingBtnHtml}
-                            <a ${btnAction} class="${btnClass} block text-center text-white text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition hover:opacity-90">${btnLabel}</a>
-                        </div>
-                    </div>
-                </div>`;
+                `;
             }).join('');
+            attachSwipeListeners();
         }
 
-        function renderCdrItems(items) {
-            const container = document.getElementById('cdr-container');
-            const section = document.getElementById('cdr-section');
-            if(items.length === 0) { section.style.display = 'none'; return; }
-            section.style.display = 'block';
-
-            container.innerHTML = items.map(item => `
-                <div class="bg-white rounded-2xl p-3 border border-slate-100 shadow-sm flex flex-col justify-between">
-                    <div>
-                        <div class="h-32 bg-slate-50 rounded-xl overflow-hidden flex items-center justify-center p-2 mb-2">
-                            <img src="${item.images[0]}" class="h-full object-contain mx-auto" alt="${item.name}">
-                        </div>
-                        <h4 class="text-xs font-black uppercase text-slate-800 mb-1">${item.name}</h4>
-                        <p class="text-[10px] text-slate-500 font-medium mb-3 leading-relaxed">${item.desc}</p>
-                    </div>
-                    <a onclick="sendWhatsAppMessage('Interested in CDR File: ${item.name}')" style="cursor:pointer" class="block w-full bg-purple-600 text-white text-center text-[11px] font-black py-2.5 rounded-xl uppercase tracking-wider transition hover:opacity-90">Get on WhatsApp</a>
-                </div>
-            `).join('');
-        }
-
-        function renderCorner(items) {
-            const container = document.getElementById('corner-container');
-            const section = document.getElementById('corner-section');
-            if(items.length === 0) { section.classList.add('hidden'); return; }
-            section.classList.remove('hidden');
-
-            container.innerHTML = items.map(item => `
-                <div class="bg-gradient-to-br from-amber-50 to-orange-50 rounded-2xl p-3 border border-amber-100 shadow-sm">
-                    <img src="${item.images[0]}" class="w-full h-40 object-cover rounded-xl mb-2" alt="${item.name}">
-                    <h4 class="text-xs font-black text-amber-900 uppercase mb-1">${item.desc}</h4>
-                    <a href="${item.link}" target="_blank" rel="noreferrer" class="block w-full bg-amber-500 text-white text-center text-[10px] font-black py-2 rounded-xl uppercase shadow-sm">Grab Deal</a>
-                </div>
-            `).join('');
-        }
-
-        function renderSidebar(items) {
-            const container = document.getElementById('sidebar-content');
-            const videoItems = items.filter(i => i.video && i.video.trim() !== "" && i.name.toLowerCase() !== 'logo' && !i.desc.includes('#'));
-            if(videoItems.length === 0) { container.innerHTML = `<p class="text-xs font-bold text-slate-400">No demos available.</p>`; return; }
-
-            container.innerHTML = videoItems.slice(0, 4).map(item => {
-                const vidId = extractYouTubeId(item.video);
-                if(!vidId) return "";
-                return `
-                    <div class="bg-white rounded-2xl p-2 border border-slate-100 shadow-sm">
-                        <div class="w-full aspect-video rounded-xl overflow-hidden mb-2 bg-slate-900">
-                            <iframe class="w-full h-full" src="https://www.youtube.com/embed/${vidId}" frameborder="0" allow="encrypted-media" allowfullscreen></iframe>
-                        </div>
-                        <h4 class="text-[11px] font-black uppercase text-slate-800 truncate">${item.name}</h4>
-                    </div>`;
-            }).join('');
-        }
-
-        function filterCategory(cat, btn) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
-            if(btn) btn.classList.add('active');
+        function renderCDR(items) {            
+            const container = document.getElementById('cdr-container');            
+            if(!container) return;
             
-            document.querySelectorAll('.showroom-avatar-wrapper').forEach(w => w.classList.remove('active'));
+            container.innerHTML = items.map(item => {                
+                let btnAction = `onclick="sendWhatsAppMessage('Interested in CDR File: ${item.name}')" style="cursor:pointer"`;
+                let btnLabel = "Order on WhatsApp";
 
-            let filtered = [];
-            let cdrItems = [];
-
-            const reserved = ['logo', 'background', 'notice', 'corner'];
-            
-            let vendorNamesSet = new Set();
-            allItems.forEach(item => {
-                if(item.desc && item.desc.includes('#')) {
-                    const match = item.desc.match(/#(\w+(\s+\w+)?)/);
-                    if(match) vendorNamesSet.add(match[1].trim().toLowerCase());
+                let videoBtnHtml = "";
+                if (item.video && extractYouTubeId(item.video)) {
+                    videoBtnHtml = `
+                    <button onclick="playUnboxingVideo('${item.video}')" class="absolute bottom-2 right-2 bg-red-600 text-white font-black text-[8px] px-2 py-0.5 rounded-full uppercase flex items-center gap-1 shadow z-10">
+                        <i class="fas fa-play text-[7px]"></i> Preview
+                    </button>`;
                 }
-            });
 
-            let validItems = allItems.filter(i => {
-                const nameLower = i.name.toLowerCase();
-                const cleanNameLower = i.name.startsWith('@') ? i.name.substring(1).trim().toLowerCase() : nameLower;
-                return !reserved.includes(nameLower) && !vendorNamesSet.has(cleanNameLower);
-            });
+                let slideHtml = (item.images && item.images.length > 0) 
+                    ? item.images.map(img => `<img src="${img}" alt="${item.name}" loading="lazy">`).join('')
+                    : `<img src="https://via.placeholder.com/150" alt="No Image">`;
 
-            if(cat === 'all') {
-                filtered = validItems.filter(i => !i.name.toLowerCase().includes('cdr') && !i.link.toLowerCase().endsWith('.cdr'));
-                cdrItems = validItems.filter(i => i.name.toLowerCase().includes('cdr') || i.link.toLowerCase().endsWith('.cdr'));
-            } else if(cat === 'cdr') {
-                filtered = [];
-                cdrItems = validItems.filter(i => i.name.toLowerCase().includes('cdr') || i.link.toLowerCase().endsWith('.cdr'));
-            } else if(cat === 'apk') {
-                filtered = validItems.filter(i => i.link.toLowerCase().endsWith('.apk'));
-            } else if(cat === 'local') {
-                filtered = validItems.filter(i => i.desc.includes('`'));
-            } else if(cat === 'men') {
-                filtered = validItems.filter(i => i.desc.toLowerCase().includes('men') && !i.desc.toLowerCase().includes('women') && !i.name.toLowerCase().includes('cdr'));
-            } else if(cat === 'women') {
-                filtered = validItems.filter(i => i.desc.toLowerCase().includes('women') && !i.name.toLowerCase().includes('cdr'));
-            }
-
-            renderItems(filtered);
-            renderCdrItems(cdrItems);
+                return `
+                    <div class="bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden p-2 flex flex-col justify-between min-h-[220px]">
+                        <div class="img-box relative !h-32">
+                            <span class="absolute top-1.5 left-1.5 bg-purple-700 text-white text-[7px] font-black px-1.5 py-0.5 rounded uppercase z-10">CDR</span>
+                            <div class="slide-container" data-card-id="${item.id}">
+                                ${slideHtml}
+                            </div>
+                            ${videoBtnHtml}
+                        </div>
+                        <div class="mt-1.5 flex-grow flex flex-col justify-between">
+                            <div>
+                                <h4 class="text-[10px] font-black text-slate-800 uppercase line-clamp-1">${item.name}</h4>
+                                <p class="text-[9px] text-slate-400 font-bold line-clamp-2 mt-0.5 leading-tight">${item.desc}</p>
+                            </div>
+                            <button ${btnAction} class="w-full mt-2 bg-[#25D366] text-white font-black text-center py-2 rounded-xl uppercase tracking-wider text-[10px] shadow-sm flex items-center justify-center gap-1">
+                                <i class="fab fa-whatsapp"></i> ${btnLabel}
+                            </button>
+                        </div>
+                    </div>
+                `;
+            }).join('');
+            attachSwipeListeners();
         }
 
-        function filterShowroom(vendorName, vendorPhone, element) {
-            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        function renderCorner(items) {            
+            const sec = document.getElementById('corner-section');            
+            const container = document.getElementById('corner-container');            
+            if(items.length === 0) { sec.classList.add('hidden'); return; }            
+            sec.classList.remove('hidden');            
+            container.innerHTML = items.map(item => `
+                <div class="bg-gradient-to-r from-amber-500 to-orange-500 rounded-2xl p-3 text-white shadow relative overflow-hidden">
+                    <h4 class="font-black uppercase text-xs">${item.desc}</h4>
+                    <a href="${item.link}" target="_blank" rel="noreferrer" class="inline-block mt-2 bg-white text-orange-600 font-black text-[10px] px-3 py-1 rounded-full uppercase tracking-wider shadow-sm">Claim Deal</a>
+                </div>
+            `).join('');        
+        }
+
+        function renderSidebar(items) {            
+            const container = document.getElementById('sidebar-content');            
+            const validVideos = items.filter(i => i.video && extractYouTubeId(i.video));            
+            if(validVideos.length === 0) { container.innerHTML = "<p class='text-xs font-bold text-slate-400 uppercase italic'>No Demos Active</p>"; return; }            
+            container.innerHTML = validVideos.slice(0, 4).map(item => {                
+                const vidId = extractYouTubeId(item.video);                
+                return `
+                    <div onclick="playUnboxingVideo('${item.video}')" class="bg-white p-2 rounded-xl border border-slate-100 shadow-sm flex gap-3 items-center cursor-pointer hover:bg-slate-50 transition">
+                        <div class="w-20 h-14 bg-slate-100 rounded-lg overflow-hidden relative shrink-0 flex items-center justify-center">
+                            <img src="https://img.youtube.com/vi/${vidId}/0.jpg" class="w-full h-full object-cover" alt="Thumb">
+                            <div class="absolute inset-0 bg-black/20 flex items-center justify-center">
+                                <div class="w-6 h-6 bg-red-600 text-white rounded-full flex items-center justify-center text-[9px] shadow"><i class="fas fa-play ml-0.5"></i></div>
+                            </div>
+                        </div>
+                        <div class="overflow-hidden">
+                            <h4 class="text-[10px] font-black text-slate-800 uppercase line-clamp-1 leading-tight">${item.name}</h4>
+                            <p class="text-[9px] text-slate-400 font-bold line-clamp-1 mt-0.5">Watch Live Unboxing Demo</p>
+                        </div>
+                    </div>
+                `;            
+            }).join('');        
+        }
+
+        function filterCategory(cat, btn) {            
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));            
+            if(btn) btn.classList.add('active');            
             document.querySelectorAll('.showroom-avatar-wrapper').forEach(w => w.classList.remove('active'));
             
-            if(element) element.classList.add('active');
+            const filteredProducts = allItems.filter(i => {                
+                const nameL = i.name.toLowerCase();                
+                if(nameL==='logo' || nameL==='background' || nameL==='notice' || nameL==='corner' || nameL.startsWith('@')) return false;                
+                const isLocal = i.desc.includes('`');                
+                const isShowroom = i.desc.includes('#');                
+                const isCDR = i.desc.toLowerCase().includes('cdr') || i.name.toLowerCase().includes('cdr');
+                const isAPK = i.link.toLowerCase().endsWith('.apk');
 
-            const prodContainer = document.getElementById('product-container');
+                if (cat === 'men' || cat === 'women') {
+                    if (isCDR) return false;
+                    const cleanDesc = i.desc ? i.desc.trim() : "";
+                    if (cat === 'men') {
+                        return cleanDesc.endsWith('.');
+                    }
+                    if (cat === 'women') {
+                        return cleanDesc.endsWith(',');
+                    }
+                }
+
+                if(cat === 'all') return !isCDR;                
+                if(cat === 'apk') return isAPK && !isCDR;                
+                if(cat === 'local') return isLocal && !isCDR;                
+                if(cat === 'showroom') return isShowroom && !isCDR;                
+                if(cat === 'cdr') return false;                
+                return i.desc.toLowerCase().includes(cat) && !isCDR;            
+            });            
+            renderItems(filteredProducts);
+
+            const filteredCDR = allItems.filter(i => {
+                const nameL = i.name.toLowerCase();
+                if(nameL==='logo' || nameL==='background' || nameL==='notice' || nameL==='corner' || nameL.startsWith('@')) return false;
+                const isCDR = i.desc.toLowerCase().includes('cdr') || i.name.toLowerCase().includes('cdr');
+                if(cat === 'all' || cat === 'cdr') return isCDR;
+                return false;
+            });
+            
             const cdrSection = document.getElementById('cdr-section');
-            prodContainer.classList.remove('hidden');
-            cdrSection.classList.add('hidden');
+            if(filteredCDR.length > 0) {
+                if(cdrSection) cdrSection.style.display = 'block';
+                renderCDR(filteredCDR);
+            } else {
+                if(cdrSection) cdrSection.style.display = 'none';
+            }
+        }
 
-            const filtered = allItems.filter(item => {
-                return item.desc && item.desc.toLowerCase().includes('#' + vendorName.toLowerCase());
+        function filterShowroom(vendorName, vendorPhone, avatarEl) {
+            document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+            document.querySelectorAll('.showroom-avatar-wrapper').forEach(w => w.classList.remove('active'));
+            if(avatarEl) avatarEl.classList.add('active');
+
+            const tagToSearch = `#${vendorName.toLowerCase()}`;
+            const matchedProducts = allItems.filter(item => {
+                const nameL = item.name.toLowerCase();
+                if(nameL==='logo' || nameL==='background' || nameL==='notice' || nameL==='corner' || nameL.startsWith('@')) return false;
+                return item.desc && item.desc.toLowerCase().includes(tagToSearch);
             });
 
-            renderItems(filtered);
-            renderCdrItems([]);
+            renderItems(matchedProducts);
+            
+            const cdrSection = document.getElementById('cdr-section');
+            if(cdrSection) cdrSection.style.display = 'none';
         }
 
-        function handleShowroomClick(btn) {
-            const itemName = btn.getAttribute('data-showroom-item');
-            const activeVendor = document.querySelector('.showroom-avatar-wrapper.active');
-            
-            let phone = "916265881327"; 
-            if(activeVendor) {
-                const onclickStr = activeVendor.getAttribute('onclick');
-                const match = onclickStr.match(/filterShowroom\('[^']+',\s*'([^']+)'/);
-                if(match && match[1]) phone = match[1];
-            }
-            
-            sendVendorWhatsApp(phone, `I want to order this showroom item: ${itemName}`);
-        }
-
-        function startAutoSlide() {
-            if(slideInterval) clearInterval(slideInterval);
-            slideInterval = setInterval(() => {
-                document.querySelectorAll('.slide-container').forEach(container => {
-                    const images = container.querySelectorAll('img');
-                    if(images.length <= 1) return;
-                    
-                    let currentIdx = parseInt(container.getAttribute('data-slide-idx') || '0');
-                    currentIdx = (currentIdx + 1) % images.length;
-                    
-                    container.setAttribute('data-slide-idx', currentIdx);
-                    container.style.transform = `translateX(-${currentIdx * 100}%)`;
-                });
-            }, 4000);
+        function startAutoSlide() {            
+            if(slideInterval) clearInterval(slideInterval);            
+            slideInterval = setInterval(() => {                
+                document.querySelectorAll('.slide-container').forEach(container => {                    
+                    const imgs = container.querySelectorAll('img');                    
+                    if(imgs.length <= 1) return;                    
+                    let currentIdx = parseInt(container.getAttribute('data-current-slide') || '0');                    
+                    currentIdx = (currentIdx + 1) % imgs.length;                    
+                    container.setAttribute('data-current-slide', currentIdx);                    
+                    container.style.transform = `translateX(-${currentIdx * 100}%)`;                
+                });            
+            }, 3000);        
         }
     </script>
 </body>
